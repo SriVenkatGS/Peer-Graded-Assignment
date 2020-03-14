@@ -29,5 +29,8 @@ library(ggplot2)
 databyinterval <- stepdata%>% select(interval, steps) %>% na.omit() %>% group_by(interval) %>% summarize(tsteps= mean(steps))
 ggplot(databyinterval, aes(x=interval, y=tsteps))+ geom_line()
 
+# 5 min interval
+databyinterval[which(databyinterval$tsteps== max(databyinterval$tsteps)),]
+
 knitr::opts_chunk$set(echo = TRUE)
 ```
