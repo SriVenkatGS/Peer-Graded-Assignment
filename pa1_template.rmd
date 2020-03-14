@@ -1,0 +1,24 @@
+---
+title: "Reproducible research"
+author: "Venkat"
+date: "3/14/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+#loading and processing
+# download file from web
+download.file("https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip", destfile = "activity.zip", mode="wb")
+# unzip data and read
+unzip("activity.zip")
+
+#histogram
+stepdata <- read.csv("activity.csv", header = TRUE)
+head(stepdata)
+library(magrittr)
+library(dplyr)
+databydate <- stepdata %>% select(date, steps) %>% group_by(date) %>% summarize(tsteps= sum(steps)) %>%na.omit()
+hist(databydate$tsteps, xlab = "Total daily Steps",main="Histogram of Total Steps by day", breaks = 20)
+
+knitr::opts_chunk$set(echo = TRUE)
+```
