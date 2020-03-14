@@ -20,5 +20,9 @@ library(dplyr)
 databydate <- stepdata %>% select(date, steps) %>% group_by(date) %>% summarize(tsteps= sum(steps)) %>%na.omit()
 hist(databydate$tsteps, xlab = "Total daily Steps",main="Histogram of Total Steps by day", breaks = 20)
 
+#calculating mean
+mean(databydate$tsteps)
+median(databydate$tsteps)
+
 knitr::opts_chunk$set(echo = TRUE)
 ```
